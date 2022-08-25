@@ -21,8 +21,6 @@ refs.form.addEventListener('input', e => {
 
 populateTextarea();
 
-
-
 function onFormSubmit(evt) {
   evt.preventDefault();
 
@@ -38,11 +36,19 @@ function onTextareaInput(evt) {
 
 function populateTextarea(evt) {
   const savedMessage = localStorage.getItem(STORAGE_KEY);
-  const parsData = JSON.parse(savedMessage);
+  
+//   if (savedMessage) {
+//     console.log(savedMessage);
+//     refs.textarea.value = savedMessage;
+//     const parsData = JSON.parse(savedMessage);
+//   console.log(parsData);
+//   }
+// }
 
-  if (savedMessage) {
-    console.log(savedMessage);
-    refs.textarea.value = savedMessage;
+ if (savedMessage) {
+    const parsData = JSON.parse(savedMessage);
+    Object.entries(parsData).forEach(([name, value]) => {
+      refs.form.elements[name].value = value;
+    });
   }
 }
-
