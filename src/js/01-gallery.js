@@ -27,17 +27,8 @@ function createColorCardsGallery(galleryItems) {
         .join('');
 }
 
+new SimpleLightbox(".gallery a", {
+        captionsData: "alt",
+        captionsDelay: 250,
+    });
 
-galleryContainer.addEventListener('click', onGalleryContainerClick);
-
-function onGalleryContainerClick(evt) {
-    evt.preventDefault();
-    const isGalleryEl = evt.target.classList.contains('gallery__image');
-    if (!isGalleryEl) {
-        return;
-    }
-    const imgSource = evt.target.dataset.source;   
-    const modal = basicLightbox.create(
-    `<img width="1400" height="900" src="${imgSource}"> `
-    ).show();  
-    }
