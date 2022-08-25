@@ -9,7 +9,7 @@ const refs = {
 }
 
 refs.form.addEventListener('submit', onFormSubmit);
-refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
+// refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
 
 refs.form.addEventListener('input', e => {
   // console.log(e.target.name);
@@ -20,6 +20,8 @@ refs.form.addEventListener('input', e => {
 });
 
 populateTextarea();
+
+
 
 function onFormSubmit(evt) {
   evt.preventDefault();
