@@ -11,17 +11,15 @@ const refs = {
 refs.form.addEventListener('submit', onFormSubmit);
 // refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
 
-refs.form.addEventListener('input', e => {
-  // console.log(e.target.name);
-  // console.log(e.target.value);
-  formData[e.target.name] = e.target.value;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
-  console.log(formData);
-});
+refs.form.addEventListener('input', throttle(onFormInput,500));
 
 populateTextarea();
 
-
+function onFormInput(e) {
+formData[e.target.name] = e.target.value;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+  console.log(formData);
+}
 
 function onFormSubmit(evt) {
   evt.preventDefault();
@@ -31,10 +29,10 @@ function onFormSubmit(evt) {
   localStorage.removeItem(STORAGE_KEY);
  }
 
-function onTextareaInput(evt) { 
-  const massage = evt.target.value;
-  localStorage.setItem(STORAGE_KEY, massage);
-}
+// function onTextareaInput(evt) { 
+//   const massage = evt.target.value;
+//   localStorage.setItem(STORAGE_KEY, massage);
+// }
 
 function populateTextarea(evt) {
   const savedMessage = localStorage.getItem(STORAGE_KEY);
