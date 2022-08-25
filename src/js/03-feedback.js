@@ -11,20 +11,20 @@ const refs = {
 refs.form.addEventListener('submit', onFormSubmit);
 // refs.textarea.addEventListener('input', throttle(onTextareaInput, 500));
 
-refs.form.addEventListener('input', throttle(onFormInput,500));
+refs.form.addEventListener('input', throttle(onFormInput, 500));
 
 populateTextarea();
 
 function onFormInput(e) {
 formData[e.target.name] = e.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
-  console.log(formData);
+  // console.log(formData);
 }
 
 function onFormSubmit(evt) {
   evt.preventDefault();
 
-  console.log('Отправляем форму');
+  // console.log('Отправляем форму');
   evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
  }
@@ -46,9 +46,10 @@ function populateTextarea(evt) {
 // }
 
  if (savedMessage) {
-    const parsData = JSON.parse(savedMessage);
+   const parsData = JSON.parse(savedMessage);
+   console.log(parsData);
     Object.entries(parsData).forEach(([name, value]) => {
       refs.form.elements[name].value = value;
-    });
+      });
   }
 }
