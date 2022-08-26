@@ -27,7 +27,6 @@ function populateTextarea(evt) {
     const parsData = JSON.parse(savedMessage);
     Object.entries(parsData).forEach(([name, value]) => {
       refs.form.elements[name].value = value;
-      console.log(parsData);
     });
   }
 }
